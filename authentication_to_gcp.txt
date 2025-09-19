@@ -1,0 +1,100 @@
+##########  authetification options ##########
+
+
+
+### simple token
+
+
+******** GOOGLE CONSOLE ********
+
+1 create or have a gcp project
+
+2 create or have a service account
+
+2.1 create a key, json format
+2.2 download the key and save it in a secure place
+
+==> make the difference between key name and key file
+
+key name/id looks like :
+4x9qcmq1428fd4fc8d87d612bade8473aa226baa
+
+real key in json format contains:
+{
+  "type": "service_account",
+  "project_id": "you_project",
+  "private_key_id": "key_name/id",
+  "private_key": "PRIVATE_KEY_VERY_SENSITIVE",
+  "client_email": "account@project.iam.gserviceaccount.com",
+  "client_id": "long_number_representing_client_id",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/SERVICE_ACCOUNT_NAME%PROJECT_NAME.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
+
+
+******** gcloud ********
+
+We consider gcloud sdk is installed and configured with the project owner account
+
+3 Use any command line tool, like powershell
+
+3.1 gcloud init
+
+3.2 we activate the key, using the json downloaded before
+	for simplicity, i do all of this from the folder where the key is:	
+C:\postman_gcp> gcloud auth activate-service-account --key-file=YOURKEYFILENAME.json
+Activated service account credentials for: [SERVICEACCOUNT@PROJECTNAME.iam.gserviceaccount.com]
+
+3.3 We create a token and save it into a variable (gcloud commands not bash:
+$TOKEN = & gcloud auth print-access-token
+$TOKEN = $TOKEN.Trim()
+
+    to check the token:
+Write-Output $TOKEN
+
+
+******** POSTMAN ********
+
+4 In Postman we set a REST request to test (GET, POST are the simplest)
+
+4.1 POST   https://compute.googleapis.com/compute/v1/projects/YOURPROJECTNAME/zones/europe-west9-a/instances
+
+4.2 Body
+in raw, paste the REST request (json format as well)
+
+4.3 Authorization
+Select Beare Token
+Body = JSON
+paste your key, the real one like below:
+
+{
+  "type": "service_account",
+  "project_id": "you_project",
+  "private_key_id": "key_name/id",
+  "private_key": "PRIVATE_KEY_VERY_SENSITIVE",
+  "client_email": "account@project.iam.gserviceaccount.com",
+  "client_id": "long_number_representing_client_id",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/SERVICE_ACCOUNT_NAME%PROJECT_NAME.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
+
+4.4 click SEND and you should have a clean HTTP 200 OK code
+
+
+/!\
+Check if any proxy is blocking from your laptop (Zscaler or else) from sending this kind of request
+
+The token will have a limited life length = 36000 sec by default, to check token validity
+I made a powershell .ps1 script to launch from my VScode (run as an administrator):
+gcloud auth activate-service-account --key-file=C:/postman_gcp/gcp-navet-postman_SA_key.json
+$TOKEN = & gcloud auth print-access-token
+$TOKEN = $TOKEN.Trim()
+Write-Output $TOKEN
+It's a kind of automation but still very a manual process.
+A more automatic process should be used to use a new token for each group of requests
