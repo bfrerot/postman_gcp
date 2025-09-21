@@ -91,7 +91,7 @@ paste your key, the real one like below:
 Check if any proxy is blocking from your laptop (Zscaler or else) from sending this kind of request
 
 The token will have a limited life length = 36000 sec by default, to check token validity
-I made a powershell .ps1 script to launch from my VScode (run as an administrator):
+I made a powershell token_please.ps1 script to launch from my VScode (run as an administrator):
 gcloud auth activate-service-account --key-file=C:/postman_gcp/gcp-navet-postman_SA_key.json
 $TOKEN = & gcloud auth print-access-token
 $TOKEN = $TOKEN.Trim()
