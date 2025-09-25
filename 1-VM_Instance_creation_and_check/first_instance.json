@@ -1,0 +1,94 @@
+{
+  "advancedMachineFeatures": {
+    "threadsPerCore": 1
+  },
+  "canIpForward": true,
+  "confidentialInstanceConfig": {
+    "enableConfidentialCompute": false
+  },
+  "deletionProtection": false,
+  "description": "terraform",
+  "disks": [
+    {
+      "autoDelete": true,
+      "boot": true,
+      "deviceName": "movingcastlevm2",
+      "initializeParams": {
+        "diskSizeGb": "10",
+        "diskType": "projects/carbon-gecko-472110-u1/zones/europe-west9-a/diskTypes/pd-balanced",
+        "labels": {},
+        "sourceImage": "projects/debian-cloud/global/images/debian-12-bookworm-v20250910"
+      },
+      "mode": "READ_WRITE",
+      "type": "PERSISTENT"
+    }
+  ],
+  "displayDevice": {
+    "enableDisplay": false
+  },
+  "guestAccelerators": [],
+  "instanceEncryptionKey": {},
+  "keyRevocationActionType": "NONE",
+  "labels": {
+    "goog-ops-agent-policy": "v2-x86-template-1-4-0",
+    "goog-ec-src": "vm_add-rest"
+  },
+  "machineType": "projects/carbon-gecko-472110-u1/zones/europe-west9-a/machineTypes/e2-medium",
+  "metadata": {
+    "items": [
+      {
+        "key": "enable-osconfig",
+        "value": "TRUE"
+      }
+    ]
+  },
+  "name": "movingcastlevm2",
+  "networkInterfaces": [
+    {
+      "accessConfigs": [
+        {
+          "name": "External NAT",
+          "networkTier": "STANDARD"
+        }
+      ],
+      "stackType": "IPV4_ONLY",
+      "subnetwork": "projects/carbon-gecko-472110-u1/regions/europe-west9/subnetworks/default"
+    }
+  ],
+  "params": {
+    "resourceManagerTags": {}
+  },
+  "reservationAffinity": {
+    "consumeReservationType": "NO_RESERVATION"
+  },
+  "scheduling": {
+    "automaticRestart": false,
+    "onHostMaintenance": "MIGRATE",
+    "provisioningModel": "STANDARD"
+  },
+  "serviceAccounts": [
+    {
+      "email": "gcp-navet-terraform@carbon-gecko-472110-u1.iam.gserviceaccount.com",
+      "scopes": [
+        "https://www.googleapis.com/auth/devstorage.read_only",
+        "https://www.googleapis.com/auth/logging.write",
+        "https://www.googleapis.com/auth/monitoring.write",
+        "https://www.googleapis.com/auth/service.management.readonly",
+        "https://www.googleapis.com/auth/servicecontrol",
+        "https://www.googleapis.com/auth/trace.append"
+      ]
+    }
+  ],
+  "shieldedInstanceConfig": {
+    "enableIntegrityMonitoring": true,
+    "enableSecureBoot": false,
+    "enableVtpm": true
+  },
+  "tags": {
+    "items": [
+      "https-server",
+      "lb-health-check"
+    ]
+  },
+  "zone": "projects/carbon-gecko-472110-u1/zones/europe-west9-a"
+}   
