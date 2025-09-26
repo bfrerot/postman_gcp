@@ -1,0 +1,115 @@
+{
+  "advancedMachineFeatures": {
+    "threadsPerCore": 1
+  },
+  "canIpForward": false,
+  "confidentialInstanceConfig": {
+    "enableConfidentialCompute": false
+  },
+  "deletionProtection": false,
+  "description": "instance, persistent ssd, local ssd (n2 inst needed)",
+  "disks": [
+    {
+      "autoDelete": true,
+      "boot": true,
+      "deviceName": "movingcastlevm2",
+      "initializeParams": {
+        "diskSizeGb": "10",
+        "diskType": "projects/carbon-gecko-472110-u1/zones/europe-west9-b/diskTypes/pd-balanced",
+        "labels": {},
+        "sourceImage": "projects/debian-cloud/global/images/debian-12-bookworm-v20250910"
+      },
+      "mode": "READ_WRITE",
+      "type": "PERSISTENT"
+    },
+    {
+      "autoDelete": true,
+      "deviceName": "local-ssd-0",
+      "initializeParams": {
+        "diskSizeGb": "375",
+        "diskType": "projects/carbon-gecko-472110-u1/zones/europe-west9-b/diskTypes/local-ssd"
+      },
+      "interface": "NVME",
+      "mode": "READ_WRITE",
+      "type": "SCRATCH"
+    },
+    {
+      "autoDelete": true,
+      "deviceName": "disk-ssd-movingcastle2",
+      "diskEncryptionKey": {},
+      "initializeParams": {
+        "description": "",
+        "diskName": "disk-ssd-movingcastle2",
+        "diskSizeGb": "100",
+        "diskType": "projects/carbon-gecko-472110-u1/zones/europe-west9-b/diskTypes/pd-ssd"
+      },
+      "mode": "READ_WRITE",
+      "type": "PERSISTENT"
+    }
+  ],
+  "displayDevice": {
+    "enableDisplay": true
+  },
+  "guestAccelerators": [],
+  "instanceEncryptionKey": {},
+  "keyRevocationActionType": "NONE",
+  "labels": {
+    "goog-ops-agent-policy": "v2-x86-template-1-4-0",
+    "goog-ec-src": "vm_add-rest"
+  },
+  "machineType": "projects/carbon-gecko-472110-u1/zones/europe-west9-b/machineTypes/n2-standard-2",
+  "metadata": {
+    "items": [
+      {
+        "key": "enable-osconfig",
+        "value": "TRUE"
+      }
+    ]
+  },
+  "name": "movingcastlevm2",
+  "networkInterfaces": [
+    {
+      "accessConfigs": [
+        {
+          "name": "External NAT",
+          "networkTier": "PREMIUM"
+        }
+      ],
+      "stackType": "IPV4_ONLY",
+      "subnetwork": "projects/carbon-gecko-472110-u1/regions/europe-west9/subnetworks/default"
+    }
+  ],
+  "params": {
+    "resourceManagerTags": {}
+  },
+  "reservationAffinity": {
+    "consumeReservationType": "ANY_RESERVATION"
+  },
+  "scheduling": {
+    "automaticRestart": true,
+    "localSsdRecoveryTimeout": {
+      "seconds": "3600"
+    },
+    "onHostMaintenance": "MIGRATE",
+    "provisioningModel": "STANDARD"
+  },
+  "serviceAccounts": [
+    {
+      "email": "778804135717-compute@developer.gserviceaccount.com",
+      "scopes": [
+        "https://www.googleapis.com/auth/cloud-platform"
+      ]
+    }
+  ],
+  "shieldedInstanceConfig": {
+    "enableIntegrityMonitoring": true,
+    "enableSecureBoot": false,
+    "enableVtpm": true
+  },
+  "tags": {
+    "items": [
+      "https-server"
+    ]
+  },
+  "zone": "projects/carbon-gecko-472110-u1/zones/europe-west9-b"
+}

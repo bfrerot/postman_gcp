@@ -1,0 +1,29 @@
+// not easy, GCP does not provide really API REST detailed configuration, pushes more on using gcloud commands
+// ==> Terraform works fine
+{
+  "tier": "BASIC_HDD",
+  "fileShares": [
+    { 
+      "name": "movingcastlefs2",
+      "capacityGb": 2048,
+      "nfsExportOptions": [
+        {
+          "accessMode": "READ_WRITE",
+          "ipRanges": ["10.0.0.0/29", "10.2.0.0/29"],
+          "squashMode": "NO_ROOT_SQUASH"          
+        },
+        {
+          "accessMode": "READ_ONLY",
+          "ipRanges": ["192.168.0.0/26"],
+          "squashMode": "NO_ROOT_SQUASH"
+        }
+      ]
+    }
+  ],
+  "networks": [
+    {
+      "network": "default",
+      "modes": ["MODE_IPV4"]
+    }
+  ]
+}
