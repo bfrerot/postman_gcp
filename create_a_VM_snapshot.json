@@ -1,0 +1,12 @@
+POST https://compute.googleapis.com/compute/beta/projects/carbon-gecko-472110-u1/global/snapshots {
+  "description": "test_postman",
+  "guestFlush": true,
+  "labels": {
+    "navet": "vm1"
+  },
+  "name": "snapshot-2",
+  "sourceDisk": "projects/carbon-gecko-472110-u1/zones/europe-west9-b/disks/movingcastlevm1",
+  "storageLocations": [
+    "europe-west9"
+  ]
+}

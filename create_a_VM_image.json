@@ -1,0 +1,13 @@
+POST https://compute.googleapis.com/compute/v1/projects/carbon-gecko-472110-u1/global/images
+{
+  "description": "test",
+  "kind": "compute#image",
+  "labels": {
+    "navet": "vm1"
+  },
+  "name": "imagevm1",
+  "sourceDisk": "projects/carbon-gecko-472110-u1/zones/europe-west9-b/disks/movingcastlevm1",
+  "storageLocations": [
+    "europe-west9"
+  ]
+}
