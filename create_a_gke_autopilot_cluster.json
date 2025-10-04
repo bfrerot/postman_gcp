@@ -1,0 +1,129 @@
+POST https://container.googleapis.com/v1beta1/projects/carbon-gecko-472110-u1/locations/europe-west9/clusters
+{
+  "cluster": {
+    "releaseChannel": {
+      "channel": "REGULAR"
+    },
+    "ipAllocationPolicy": {
+      "useIpAliases": true,
+      "clusterIpv4CidrBlock": "/17",
+      "servicesIpv4CidrBlock": ""
+    },
+    "controlPlaneEndpointsConfig": {
+      "dnsEndpointConfig": {
+        "allowExternalTraffic": true
+      }
+    },
+    "networkConfig": {
+      "datapathProvider": "ADVANCED_DATAPATH",
+      "gatewayApiConfig": {
+        "channel": "CHANNEL_STANDARD"
+      },
+      "enableIntraNodeVisibility": true,
+      "inTransitEncryptionConfig": "IN_TRANSIT_ENCRYPTION_DISABLED",
+      "enableFqdnNetworkPolicy": false,
+      "defaultEnablePrivateNodes": false,
+      "defaultSnatStatus": {
+        "disabled": false
+      },
+      "enableMultiNetworking": false,
+      "dnsConfig": {
+        "clusterDns": "PLATFORM_DEFAULT",
+        "clusterDnsScope": "CLUSTER_SCOPE"
+      },
+      "disableL4LbFirewallReconciliation": false
+    },
+    "networkPolicy": {
+      "enabled": false
+    },
+    "notificationConfig": {
+      "pubsub": {
+        "enabled": false,
+        "topic": ""
+      }
+    },
+    "binaryAuthorization": {
+      "evaluationMode": "DISABLED"
+    },
+    "secretManagerConfig": {
+      "enabled": false
+    },
+    "authenticatorGroupsConfig": {
+      "enabled": false
+    },
+    "databaseEncryption": {
+      "state": "DECRYPTED"
+    },
+    "resourceLabels": {
+      "label1": "test-console"
+    },
+    "nodePoolAutoConfig": {
+      "networkTags": {
+        "tags": []
+      }
+    },
+    "enableKubernetesAlpha": false,
+    "loggingConfig": {
+      "componentConfig": {
+        "enableComponents": [
+          "SYSTEM_COMPONENTS",
+          "WORKLOADS"
+        ]
+      }
+    },
+    "monitoringConfig": {
+      "componentConfig": {
+        "enableComponents": [
+          "SYSTEM_COMPONENTS",
+          "STORAGE",
+          "POD",
+          "DEPLOYMENT",
+          "STATEFULSET",
+          "DAEMONSET",
+          "HPA",
+          "JOBSET",
+          "CADVISOR",
+          "KUBELET",
+          "DCGM"
+        ]
+      },
+      "advancedDatapathObservabilityConfig": {
+        "enableMetrics": false,
+        "enableRelay": false
+      },
+      "managedPrometheusConfig": {
+        "enabled": true,
+        "autoMonitoringConfig": {
+          "scope": "NONE"
+        }
+      }
+    },
+    "verticalPodAutoscaling": {
+      "enabled": true
+    },
+    "autoscaling": {
+      "enableNodeAutoprovisioning": true,
+      "autoprovisioningNodePoolDefaults": {
+        "oauthScopes": [
+          "https://www.googleapis.com/auth/cloud-platform"
+        ]
+      }
+    },
+    "autopilot": {
+      "enabled": true
+    },
+    "securityPostureConfig": {
+      "mode": "BASIC",
+      "vulnerabilityMode": "VULNERABILITY_DISABLED"
+    },
+    "network": "projects/carbon-gecko-472110-u1/global/networks/default",
+    "subnetwork": "projects/carbon-gecko-472110-u1/regions/europe-west9/subnetworks/default",
+    "initialClusterVersion": "1.33.4-gke.1245000",
+    "maintenancePolicy": {
+      "window": {
+        "maintenanceExclusions": {}
+      }
+    },
+    "name": "movingcastle-gke-cluster-1"
+  }
+}

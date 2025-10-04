@@ -1,0 +1,51 @@
+POST https://compute.googleapis.com/compute/beta/projects/carbon-gecko-472110-u1/regions/europe-west9/instanceGroupManagers
+{
+  "baseInstanceName": "movingcastle-ig-3",
+  "description": "postman",
+  "distributionPolicy": {
+    "targetShape": "EVEN",
+    "zones": [
+      {
+        "zone": "projects/carbon-gecko-472110-u1/zones/europe-west9-a"
+      },
+      {
+        "zone": "projects/carbon-gecko-472110-u1/zones/europe-west9-b"
+      },
+      {
+        "zone": "projects/carbon-gecko-472110-u1/zones/europe-west9-c"
+      }
+    ]
+  },
+  "instanceFlexibilityPolicy": {},
+  "instanceLifecyclePolicy": {
+    "defaultActionOnFailure": "REPAIR",
+    "forceUpdateOnRepair": "NO",
+    "onFailedHealthCheck": "DEFAULT_ACTION"
+  },
+  "instanceTemplate": "projects/carbon-gecko-472110-u1/global/instanceTemplates/movingcastle-it-n2-standard-2-02",
+  "listManagedInstancesResults": "PAGELESS",
+  "name": "movingcastle-ig-3",
+  "standbyPolicy": {
+    "mode": "MANUAL"
+  },
+  "targetSize": 1,
+  "updatePolicy": {
+    "instanceRedistributionType": "PROACTIVE"
+  }
+}
+
+POST https://compute.googleapis.com/compute/beta/projects/carbon-gecko-472110-u1/regions/europe-west9/autoscalers
+{
+  "autoscalingPolicy": {
+    "coolDownPeriodSec": 60,
+    "cpuUtilization": {
+      "predictiveMethod": "NONE",
+      "utilizationTarget": 0.6
+    },
+    "maxNumReplicas": 10,
+    "minNumReplicas": 1,
+    "mode": "ON"
+  },
+  "name": "movingcastle-ig-3",
+  "target": "projects/carbon-gecko-472110-u1/regions/europe-west9/instanceGroupManagers/movingcastle-ig-3"
+}
